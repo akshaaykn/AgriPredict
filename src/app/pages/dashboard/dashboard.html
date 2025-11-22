@@ -1,0 +1,93 @@
+<h2 class="title">🌾 India Mandi Crop Market Rates</h2>
+<!-- 🌾 FILTER FORM -->
+<div class="filter-card">
+    <form (ngSubmit)="applyFilters()">
+        <div class="grid">
+
+            <!-- State -->
+            <div class="col">
+                <label>State</label>
+                <p-select [options]="stateList" optionLabel="label" optionValue="value" [(ngModel)]="filters.state"
+                    name="state" placeholder="Select State" (onChange)="loadDistricts()" [showClear]="true">
+                </p-select>
+            </div>
+
+            <!-- District -->
+            <div class="col">
+                <label>District</label>
+                <p-select [options]="districtList" optionLabel="label" optionValue="value"
+                    [(ngModel)]="filters.district" name="district" placeholder="Select District"
+                    (onChange)="loadMarkets()" [showClear]="true">
+                </p-select>
+            </div>
+
+            <!-- Market -->
+            <div class="col">
+                <label>Market</label>
+                <p-select [options]="marketList" optionLabel="label" optionValue="value" [(ngModel)]="filters.market"
+                    name="market" placeholder="Select Market" [showClear]="true">
+                </p-select>
+            </div>
+
+            <!-- Commodity -->
+            <div class="col">
+                <label>Commodity</label>
+                <p-select [options]="commodityList" optionLabel="label" optionValue="value"
+                    [(ngModel)]="filters.commodity" name="commodity" placeholder="Select Commodity" [showClear]="true">
+                </p-select>
+            </div>
+            <div class="col">
+                <div class="btn-group">
+                    <button pButton type="submit" label="Search" class="p-button-success"></button>
+                    <button pButton type="button" label="Reset Filters" class="p-button-secondary"
+                        (click)="resetFilters()"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+<p-table #dt [value]="marketData" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 20, 50]"
+    [globalFilterFields]="['state','district','market','commodity','variety']" [scrollable]="true" scrollHeight="450px"
+    [resizableColumns]="true" [columnResizeMode]="'expand'" [loading]="loading" styleClass="p-datatable-gridlines">
+
+    <!-- Top Bar -->
+    <ng-template pTemplate="caption">
+        <div class="flex justify-content-between align-items-center">
+            <span class="text-xl font-bold">Live Price Table</span>
+        </div>
+    </ng-template>
+
+    <!-- Columns -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="state">State <p-sortIcon field="state"></p-sortIcon></th>
+            <th pSortableColumn="district">District <p-sortIcon field="district"></p-sortIcon></th>
+            <th pSortableColumn="market">Market <p-sortIcon field="market"></p-sortIcon></th>
+            <th pSortableColumn="commodity">Commodity <p-sortIcon field="commodity"></p-sortIcon></th>
+            <th pSortableColumn="variety">Variety <p-sortIcon field="variety"></p-sortIcon></th>
+            <th pSortableColumn="arrival_date">Arrival Date <p-sortIcon field="arrival_date"></p-sortIcon></th>
+            <th pSortableColumn="min_price">Min Price <p-sortIcon field="min_price"></p-sortIcon></th>
+            <th pSortableColumn="max_price">Max Price <p-sortIcon field="max_price"></p-sortIcon></th>
+            <th pSortableColumn="modal_price">Modal Price <p-sortIcon field="modal_price"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-row>
+        <tr>
+            <td>{{ row.state }}</td>
+            <td>{{ row.district }}</td>
+            <td>{{ row.market }}</td>
+            <td>{{ row.commodity }}</td>
+            <td>{{ row.variety }}</td>
+            <td>{{ row.arrival_date }}</td>
+            <td>₹{{ row.min_price }}</td>
+            <td>₹{{ row.max_price }}</td>
+            <td>₹{{ row.modal_price }}</td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,51 @@
+.title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #0d625c;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+  background: linear-gradient(to right, #009688, #00695c);
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background: #c2fff4 !important;
+}
+
+.filter-card {
+  padding: 18px;
+  margin: 20px 0;
+  border-radius: 12px;
+  background: #f6fbfb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.col label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #075e54;
+}
+
+.btn-group {
+  margin-top: 22px;
+  display: flex;
+  gap: 15px;
+}
